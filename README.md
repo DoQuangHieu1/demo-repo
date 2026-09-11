@@ -139,6 +139,9 @@ exit     0 when at least one card is written; 2 when the input file is
 ## 5. What could stop this
 
 No external dependencies. The tool requires no network, account, or API, and handles no personal data. It reads and writes only local files, and the common-word list ships within the tool itself.
+
 The core design is the choice of English. Chinese would first require segmenting words with no spaces between them - a hard, error-prone problem. English separates words with spaces, making the split reliable and reducing this from a research project to a weekend tool. The cost, stated above, is the absence of real lemmatization: "run" and "ran" may produce two cards. This is mitigated by tests covering the common -s/-ed/-ing cases; a stray duplicate is a minor, visible flaw, not a failure.
+
 The .apkg format is the second risk: producing a file that Anki silently rejects. This is defended by the final test above - a genuine import into Anki must succeed, verified by hand and against the genanki library's round-trip.
-The deeper risk is that the code is thin. Splitting text and packaging an .apkg is modest work that an AI largely automates. The value lies instead in the fit to how I study: I learn English by reading, I meet new words in real sentences, and a word recalled within its sentence is retained far better than one in isolation. The --known file prevents the tool from burying me in words I already have. Should the cards prove no more useful than plain word lists, the premise was wrong — but sentence mining is a method serious learners already rely on, which is why I trust the bet.
+
+The deeper risk is that the code is thin. Splitting text and packaging an .apkg is modest work that an AI largely automates. The value lies instead in the fit to how I study: I learn English by reading, I meet new words in real sentences, and a word recalled within its sentence is retained far better than one in isolation. The --known file prevents the tool from burying me in words I already have. Should the cards prove no more useful than plain word lists, the premise was wrong — but sentence mining is a method serious learners already rely on.
